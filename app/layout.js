@@ -1,5 +1,7 @@
 // app/layout.js
 import "./globals.css";
+import Logo from "../components/Logo";
+
 
 export const metadata = {
   title: "E-Waste Product Categorization",
@@ -17,7 +19,7 @@ export default function RootLayout({ children }) {
               <Logo size={46} />
 
               <div>
-                <h1 className="app-title">E-Waste Product Categorization</h1>
+                
                 <p className="app-subtitle">
                   Explore e-waste items, check recyclability, and find responsible recycling centres.
                 </p>
