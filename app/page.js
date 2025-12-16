@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import ProductCard from "../components/ProductCard";
 import FilterBar from "../components/FilterBar";
 import products from "../data/products";
@@ -17,11 +18,7 @@ export default function Home() {
   });
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-center">
-        E-Waste Product Categorization
-      </h1>
-
+    <>
       <FilterBar
         search={search}
         setSearch={setSearch}
@@ -29,11 +26,16 @@ export default function Home() {
         setCategory={setCategory}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </>
   );
 }
