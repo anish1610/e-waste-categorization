@@ -1,35 +1,40 @@
-"use client";
+// app/layout.js
+import "./globals.css";
 
-import { useState, useEffect } from "react";
+export const metadata = {
+  title: "E-Waste Product Categorization",
+  description:
+    "A modern e-waste categorization platform with product filtering and nearby recycling locations.",
+};
 
 export default function RootLayout({ children }) {
-  const [theme, setTheme] = useState("light");
-
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
   return (
     <html lang="en">
-      <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-        <header className="p-4 flex justify-between items-center max-w-6xl mx-auto">
-          <h1 className="text-2xl font-bold">E-Waste Catalog</h1>
-          <button
-            onClick={toggleTheme}
-            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded"
-          >
-            {theme === "light" ? "Dark Mode" : "Light Mode"}
-          </button>
-        </header>
-        <main className="p-6 max-w-6xl mx-auto">{children}</main>
+      <body>
+        <div className="app-root">
+          <header className="app-header">
+            <div className="container header-inner">
+              <div>
+                <h1 className="app-title">E-Waste Product Categorization</h1>
+                <p className="app-subtitle">
+                  Explore e-waste items, check recyclability, and find responsible recycling centres.
+                </p>
+              </div>
+              <div className="header-badge">
+                <span className="badge-pill">Final Year Project</span>
+                <span className="badge-pill badge-pill-secondary">Sustainable Tech</span>
+              </div>
+            </div>
+          </header>
+          <main className="container main-content">{children}</main>
+          <footer className="app-footer">
+            <div className="container footer-inner">
+              <p className="footer-text">
+                Built with Next.js • Promoting responsible e‑waste management.
+              </p>
+            </div>
+          </footer>
+        </div>
       </body>
     </html>
   );

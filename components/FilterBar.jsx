@@ -1,31 +1,84 @@
+// components/FilterBar.jsx
 "use client";
 
-import { FaSearch } from "react-icons/fa";
-
-export default function FilterBar({ search, setSearch, category, setCategory }) {
+export default function FilterBar({
+  searchTerm,
+  setSearchTerm,
+  selectedCategory,
+  setSelectedCategory,
+  selectedRecyclable,
+  setSelectedRecyclable,
+  sortBy,
+  setSortBy,
+}) {
   return (
-    <div className="flex flex-col sm:flex-row gap-4 mb-6 items-center">
-      <div className="relative flex-1">
-        <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search products..."
-          className="w-full pl-10 px-4 py-2 border rounded-xl dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 focus:ring-2 focus:ring-blue-400 transition"
-        />
+    <section className="filter-bar">
+      <div className="filter-group filter-group-main">
+        <div className="filter-field">
+          <label className="filter-label">Search products</label>
+          <input
+            type="text"
+            className="filter-input"
+            placeholder="Search by name, type, or keywords..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
+        <div className="filter-field">
+          <label className="filter-label">Category</label>
+          <select
+            className="filter-select"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <option value="all">All categories</option>
+            <option value="household">Household</option>
+            <option value="office">Office</option>
+            <option value="industrial">Industrial</option>
+          </select>
+        </div>
+
+        <div className="filter-field">
+          <label className="filter-label">Recyclability</label>
+          <select
+            className="filter-select"
+            value={selectedRecyclable}
+            onChange={(e) => setSelectedRecyclable(e.target.value)}
+          >
+            <option value="all">Recyclable + Non‑recyclable</option>
+            <option value="recyclable">Recyclable only</option>
+            <option value="non-recyclable">Non‑recyclable only</option>
+          </select>
+        </div>
       </div>
 
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        className="px-4 py-2 border rounded-xl dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600 focus:ring-2 focus:ring-blue-400 transition"
-      >
-        <option value="">All Categories</option>
-        <option value="Mobile">Mobile</option>
-        <option value="Laptop">Laptop</option>
-        <option value="Battery">Battery</option>
-      </select>
-    </div>
+      <div className="filter-group filter-group-secondary">
+        <div className="filter-field">
+          <label className="filter-label">Sort by</label>
+          <select
+            className="filter-select"
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+          >
+            <option value="name-asc">Name (A → Z)</option>
+            <option value="name-desc">Name (Z → A)</option>
+            <option value="hazard-desc">Hazard level (High → Low)</option>
+          </select>
+        </div>
+        <button
+          type="button"
+          className="btn-reset"
+          onClick={() => {
+            setSearchTerm("");
+            setSelectedCategory("all");
+            setSelectedRecyclable("all");
+            setSortBy("name-asc");
+          }}
+        >
+          Reset all filters
+        </button>
+      </div>
+    </section>
   );
 }
