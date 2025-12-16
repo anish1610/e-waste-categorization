@@ -506,6 +506,7 @@ body {
   }
 
   .header-inner {
+    align-items: center;
     flex-direction: column;
     align-items: flex-start;
   }

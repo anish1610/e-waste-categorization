@@ -14,6 +14,8 @@ export default function RootLayout({ children }) {
         <div className="app-root">
           <header className="app-header">
             <div className="container header-inner">
+              <Logo size={46} />
+
               <div>
                 <h1 className="app-title">E-Waste Product Categorization</h1>
                 <p className="app-subtitle">
